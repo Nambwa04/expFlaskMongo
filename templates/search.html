@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
+    <title>Search</title>
     <style>
         body {
             margin: 0;
@@ -91,20 +91,35 @@
 <body>
     <div class="forgot-password-body">
         <div class="forgot-password-container">
-            <form id="forgotPassword" action="" method="POST">
+            <form id="forgotPassword" action="{{ url_for('search') }}" method="POST">
                 <h2>Find Contacts</h2>
                 <div class="fdatafield">
                     <ion-icon name="search-outline"></ion-icon>
-                    <input type="text" id="RegNo" name="reg_number" required>
+                    <input type="text" id="reg_no" name="reg_number" required>
                     <label for="regNo">Registration Number:</label>
                 </div>
                 <div>
-                    <button type="submit" onclick="searchContact()">Search</button>
+                    <button type="submit">Search</button>
                 </div>
             </form>
+            {% if contacts %}
+            <div class="results-container">
+                <h3>Contact Information</h3>
+                <p><strong>Registration Number:</strong> {{ contacts.reg_number }}</p>
+                <p><strong>Phone:</strong> {{ contacts.phone }}</p>
+                <p><strong>Email:</strong> {{ contacts.email }}</p>
+                <p><strong>Address:</strong> {{ contacts.address }}</p>
+            </div>
+            {% elif request.method == 'POST' %}
+            <div class="no-results">
+                <p>No contacts found for this registration number.</p>
+            </div>
+            {% endif %}
         </div>
     </div>
-    <script src="script.js"></script>
+    <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+
+    <!-- <script src="script.js"></script> -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

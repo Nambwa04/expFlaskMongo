@@ -97,7 +97,7 @@
     <body>
         <div class="formbody">
             <div class="formcontainer">
-                <form id="userDetailsForm">
+                <form id="userDetailsForm" action="{{ (url_for('submit_details')) }}" method="POST">
                     <h2>User Details Form</h2>
                     <div class="formdatafield">
                         <ion-icon name="phone-portrait-outline"></ion-icon>
@@ -116,13 +116,12 @@
                     </div>
                     <div class="formdatafield">
                         <ion-icon name="clipboard-outline"></ion-icon>
-                        <input type="text" id="regNo" name="regNo" required>
+                        <input type="text" id="regNo" name="reg_number" required>
                         <label for="regNo">Registration Number:</label>
                     </div>
 
                     <div class="F-Register">
-                        <a href="search.html">
-                        <button type="submit">Submit</button></a>
+                        <button type="submit">Submit</button>
                     </div>
                     
                 </form>
